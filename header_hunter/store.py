@@ -43,7 +43,7 @@ def store_in_cookiejar(cookie_str, domain):
 
 def store_in_env(text, export=False):
     """
-    Print a 'Foo: Bar' text as FOO="Bar" line.
+    Convert 'Foo: Bar' text to `FOO="Bar"` or `export FOO="Bar"` line.
     """
     if text == None:
         return
@@ -60,3 +60,18 @@ def store_in_env(text, export=False):
     else:
         v = ""
     return prefix + k.upper() + '="' + v + '"'
+
+
+def store_value(text):
+    """
+    Return value part of a 'Foo: Bar'.
+    """
+    if text == None:
+        return
+
+    s = text.split(": ")
+    if len(s) > 1:
+        v = s[1]
+    else:
+        v = ""
+    return v
