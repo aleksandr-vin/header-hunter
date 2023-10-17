@@ -38,7 +38,7 @@ def store_in_cookiejar(cookie_str, domain):
 
         jar.save(ignore_discard=True)
         temp_file.seek(0)
-        print(temp_file.read())
+        return temp_file.read()
 
 
 def store_in_env(text, export=False):
@@ -55,5 +55,8 @@ def store_in_env(text, export=False):
 
     s = text.split(": ")
     k = s[0]
-    v = s[1]
-    print(prefix + k.upper() + '="' + v + '"')
+    if len(s) > 1:
+        v = s[1]
+    else:
+        v = ""
+    return prefix + k.upper() + '="' + v + '"'

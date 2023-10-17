@@ -40,7 +40,10 @@ def main():
         'jar': lambda x: store_in_cookiejar(x, 'localhost')
     }
 
-    encoder = encoders[args.output_format]
+    def encoder(x):
+        r = encoders[args.output_format](x)
+        if r:
+            print(r)
 
     for name in args.header_names:
         encoder(sniff_header_from_clipboard(name))
